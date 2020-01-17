@@ -1,0 +1,45 @@
+<HTML>
+    <HEAD>
+    <TITLE>Dynamically add Textbox, Radio, Button in html Form using JavaScript</TITLE>
+    <SCRIPT language="javascript">
+    function add() {
+    
+        var foo = document.getElementById("fooBar");
+        
+        //Append the element in page (in span).
+        element = document.createElement("input");
+        secondElement = document.createElement("input");
+        foo.appendChild(element);
+        foo.appendChild(secondElement);
+    }
+    </SCRIPT>
+    </HEAD>
+    <BODY>
+    <FORM>
+    <H2>Dynamically add element in form.</H2>
+    Select the element and hit Add to add it in form.
+    <BR/>
+
+
+    <input name="studentId" type="number">Student ID</input>
+    <br/>
+    <input name="libraryId" type="number">Library ID</input>
+    <br/>
+    <input name="date" type="date">Student ID</input>
+    <br/>
+    <input name="numberOfBooks">Number of books</input>
+    <br/>
+    <div class="dynamic_add" name="dynamic_add" id="dynamic_add">
+        <br/>
+        <input name="bookID"/> &nbsp;
+        <input name="bookName">
+        <br/>
+    </div>
+    
+    <INPUT type="button" value="Add" onclick="add()"/>
+    
+    <span id="fooBar">&nbsp;</span>
+    
+    </FORM>
+    </BODY>
+    </HTML>
