@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:weightSum="12"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="2"-->
+            <!--android:id="@+id/icon"-->
+            <!--android:src="@drawable/download_1" />-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="6"-->
+            <!--android:orientation="vertical"-->
+            <!--android:weightSum="2">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/title"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:contextClickable="false"-->
+                <!--android:paddingTop="15dp"-->
+                <!--android:paddingLeft="8dp"-->
+                <!--android:text="This is a book"-->
+                <!--android:textSize="18dp"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:id="@+id/subtitle"-->
+                <!--android:paddingLeft="8dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="This is subtitle of the book"-->
+                <!--android:textSize="14dp" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="3"-->
+            <!--android:gravity="bottom|center"-->
+            <!--android:text="Available"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:textColor="#4CAF50" />-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />-->
+
+
+    <!--</LinearLayout>-->
+
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_margin="8dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="8dp"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_weight="7"
+            android:weightSum="2">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Robert Lewandowski"
+                android:scrollbars="vertical"
+            android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:text="Poland"
+                android:layout_weight="1" />
+            <!--android:layout_weight="1"-->
+
+        </LinearLayout>
+
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="bottom|center"
+        android:text="Available"
+        android:paddingBottom="10dp"
+        android:textColor="#4CAF50" />
+
+        <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
