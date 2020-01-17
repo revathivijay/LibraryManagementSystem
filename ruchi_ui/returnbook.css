@@ -1,0 +1,52 @@
+body {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+}
+
+input[type=number], select {
+    width: 90%;
+    padding: 12px 10px;
+    margin: 8px 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 90%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+
+body {
+    background: #9075ff;
+    background: linear-gradient(to bottom right, #9075ff, #3ec7ff);
+    color: #f1f1f1;
+}
+
+.dynamic-css {
+    color: black;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.row {
+    justify-content: center;
+}
