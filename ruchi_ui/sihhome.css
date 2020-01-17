@@ -171,6 +171,11 @@ body {
     background-size: 1600px 1000px;
 }
 
+nav li {
+    display: inline-block;
+    margin-left: 12px;
+}
+
 svg {
     position: absolute;
     width: 100%;

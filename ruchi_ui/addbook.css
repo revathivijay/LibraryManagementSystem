@@ -4,20 +4,22 @@ body {
 
 form {
     display: inline-block;
-    color: white;
     text-align: center;
-    margin-top: 20px;
-    margin-left: 600px;
+    margin-top: 250px;
 }
 
-input[type=number], select {
-    width: 90%;
-    padding: 12px 10px;
-    margin: 8px 15px;
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 20px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+h2 {
+    color: white;
 }
 
 input[type=button] {
@@ -31,25 +33,9 @@ input[type=button] {
 }
 
 input[type=button]:hover {
-    background-color: black;
+    background-color: #45a049;
 }
 
 body {
     background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
-    justify-content: center;
-}
-
-.dynamic-css {
-    color: black;
-    width: 90%;
-    padding: 12px 20px;
-    margin: 8px 20px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-h2 {
-    color: white;
 }

@@ -4,6 +4,8 @@ body {
 
 form {
     display: inline-block;
+    margin-top: 0;
+    color: white;
 }
 
 input[type=text], select {
@@ -36,7 +38,7 @@ input[type=date], select {
     box-sizing: border-box;
 }
 
-input[type=button] {
+.button {
     width: 80%;
     background-color: #4CAF50;
     color: white;
@@ -51,12 +53,6 @@ input[type=button]:hover {
     background-color: #45a049;
 }
 
-body {
-    background: #9075ff;
-    background: linear-gradient(to bottom right, #9075ff, #3ec7ff);
-    color: #f1f1f1;
-}
-
 .dynamic-css {
     width: 40%;
     padding: 12px 20px;
@@ -65,4 +61,16 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+h2 {
+    color: white;
+}
+
+body {
+    background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+}
+
+b {
+    border: 2px solid white;
 }

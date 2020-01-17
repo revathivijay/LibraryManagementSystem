@@ -4,48 +4,8 @@
         <TITLE>Return book</TITLE>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="returnbook.css">
-        <script type="text/javascript" src="add_remove.js"></script>
         <SCRIPT language="javascript">
-            // function generate() {
 
-            //     var foo = document.getElementById("fooBar");
-
-            //     //Append the element in page (in span).
-            //     element = document.createElement("input");
-            //     element.type = "number";
-            //     element.className = "dynamic-css";
-
-            //     secondElement = document.createElement("input");
-            //     secondElement.type = "number";
-            //     secondElement.className = "dynamic-css";
-
-            //     thirdElement = document.createElement("input");
-            //     thirdElement.type = "text";
-            //     thirdElement.className = "dynamic-css";
-
-            //     fourthElement = document.createElement("date");
-            //     fourthElement.type = "date";
-            //     fourthElement.className = "dynamic-css";
-
-            //     fifthElement = document.createElement("date");
-            //     fifthElement.type = "date";
-            //     fifthElement.className = "dynamic-css";
-
-            //     sixthElement = document.createElement("input");
-            //     sixthElement.type = "number";
-            //     sixthElement.className = "dynamic-css";
-
-
-
-
-            //     foo.appendChild(element);
-            //     foo.appendChild(secondElement);
-            //     foo.appendChild(thirdElement);
-            //     foo.appendChild(fourthElement);
-            //     foo.appendChild(fifthElement);
-            //     foo.appendChild(sixthElement);
-
-            // }
             function addFields() {
                 var container = document.getElementById("container");
                 while (container.hasChildNodes()) {
@@ -59,7 +19,7 @@
                 container.appendChild(input1);
                 container.appendChild(document.createElement("br"));
 
-                container.appendChild(document.createTextNode("Book Name "));
+                container.appendChild(document.createTextNode("Book Name"));
                 var input2 = document.createElement("input");
                 input2.type = "text";
                 input2.className = "dynamic-css";
