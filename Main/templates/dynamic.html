@@ -1,0 +1,88 @@
+<HTML>
+    <HEAD>
+    <TITLE>Dynamically add Textbox, Radio, Button in html Form using JavaScript</TITLE>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./../static/dynamic.css">
+    <SCRIPT language="javascript">
+    function check()
+    {
+        console.log('Check works')
+    }
+    function add() {
+
+        var foo = document.getElementById("foobar1");
+
+        //Append the element in page (in span).
+        element = document.createElement("input");
+        fourthElement = document.createElement("input");
+        fourthElement.type="button";
+
+        element.placeholder = "Enter book id"
+        element.className = "dynamic-css";
+        secondElement = document.createElement("input");
+        secondElement.className = "dynamic-css";
+        secondElement.placeholder = "Enter book name"
+        document.getElementById('no').value = Number(document.getElementById('no').value)+1
+        secondElement.id="bname-"+document.getElementById('no').value;
+        element.id= "bid-"+document.getElementById('no').value;
+        fourthElement.onclick = function(){$.ajax({data: {bid: $('#'+element.id).val(), bnameid: secondElement.id}, type : 'POST', url : 'http://127.0.0.1:5000/getBname'}).done(function(data)
+          {
+            document.getElementById(data.bnameid).value = data.bname;
+            console.log(data);
+          });
+        event.preventDefault();};
+        thirdElement = document.createElement("br");
+        breakline = document.createElement("br");
+        foo.appendChild(element);
+        foo.innerHTML += ' ';
+        foo.appendChild(secondElement);
+        foo.appendChild(thirdElement);
+        foo.appendChild(fourthElement);
+        foo.appendChild(breakline);
+
+
+
+        console.log('######')
+        console.log(element.id, secondElement.id)
+        console
+
+    }
+    </SCRIPT>
+    </HEAD>
+    <BODY>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="add_remove.js"></script>
+    <FORM>
+    <H2>Form for issuing books.</H2>
+    Select the element and hit Add to add it in form.
+    <BR/>
+    <label for="fname">Full Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Enter first name">
+    <br />
+    <label for="Student ID">Student ID</label>
+    <input type="number" id="sid" name="libraryId" placeholder="Enter your college ID">
+    <br />
+
+    <label for="Librarian ID">Librarian ID</label>
+    <input type="number" id="lid" name="librarianId" placeholder="Enter your librarian ID">
+    <br />
+
+    <label for="Date of issue">Date of issue</label>
+    <input id="date" type="date" name="date"/>
+    <br />
+        <label for="Numberofbooks">Number of books</label>
+    <input id="no" value=0 disabled/><br />
+    <br/>
+    <div class="dynamic_add"  id="foobar1">
+
+    </div>
+    
+    <BUTTON type="button" class="add"  onclick="add()" >ADD NEW BOOK!</BUTTON>
+            <br>
+    
+    <span id="fooBar">&nbsp;</span>
+        <BUTTON type="submit"  >Submit</BUTTON>
+    </FORM>
+    <script></script>
+    </BODY>
+    </HTML>
