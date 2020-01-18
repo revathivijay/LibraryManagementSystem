@@ -14,19 +14,26 @@ public class Main2Activity extends AppCompatActivity {
     String[] maintitle ={
             "Title 1","Title 2",
             "Title 3","Title 4",
-            "Title 5",
+            "Title 5", "Title 6",
+            "Title 7", "Title 8"
     };
 
     String[] subtitle ={
             "Sub Title 1","Sub Title 2",
             "Sub Title 3","Sub Title 4",
-            "Sub Title 5",
+            "Sub Title 5", "Sub Title 6",
+            "Sub Title 7", "Sub Title 8"
     };
 
-    Integer[] imgid={
-            R.drawable.download_1,R.drawable.download_2,
-            R.drawable.download_3,R.drawable.download_4,
-            R.drawable.download_5,
+    String[] imgid={
+            "https://images.gr-assets.com/books/1447303603s/2767052.jpg",
+            "https://images.gr-assets.com/books/1474154022s/3.jpg",
+            "https://images.gr-assets.com/books/1361039443s/41865.jpg",
+            "https://images.gr-assets.com/books/1361975680s/2657.jpg",
+            "https://images.gr-assets.com/books/1490528560s/4671.jpg",
+            "https://images.gr-assets.com/books/1360206420s/11870085.jpg",
+            "https://images.gr-assets.com/books/1372847500s/5907.jpg",
+            "https://images.gr-assets.com/books/1398034300s/5107.jpg"
     };
 
     @Override
@@ -70,3 +77,4 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
 }
+
