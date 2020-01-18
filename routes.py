@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, jsonify
-from Main.models import Student
-from Main.forms import LoginForm, AddStudents, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+# from Main.models import Student
+# from Main.forms import LoginForm, AddStudents, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from Main import app, bcrypt, mail
 import pymysql
 import json
@@ -20,23 +20,11 @@ con = pymysql.connect(
 )
 
 
-
 def execute_query(query, con):
    c = con.cursor()
    c.execute(query=query)
    result = c.fetchall()
    return result
-
-def extract_book_from_db(search_text):
-    query = "select bname, author from books where bname like '%{}%' OR author like '%{}%'".format(search_text, search_text)
-    result = execute_query(query=query, con=con)
-    return(result)
-
-def count_no_of_books(search_text):
-    query = "select count(bid) from books where bname like '%{}%'".format(search_text)
-    result = execute_query(query, con)
-    # print(result[0][0])
-    return result[0][0]
 
 def auto_fill_book_details(bid):
    #query for displaying bname and author automatically from bid, given bid=bid
@@ -48,16 +36,31 @@ def auto_fill_book_details(bid):
 #query for displaying book details when entered in return page
 def fetch_issued_book_details(bid):
    query = "select bid, sid, bname, date_of_issue from issued where bid={}".format(bid)
+   print(query)
    result = execute_query(query, con)
-   print(result)
+   return(result)
 
 def insert_issued(bid, sid, datee, lid):
     date_str = "\"" + datee + "\""
-    query = "insert into issued values({}, {}, {}, {}, {}, {})".format(lid, sid, bid, "\"The immortals of Meluha\"",date_str, 0)
-    print("insert into issued values(lid={}, sid={}, bid={}, bname={},  is_returned={})".format(lid, sid, bid, "\"The immortals of Meluha\"", 0))
-    result = execute_query(query, con)
+    bname = auto_fill_book_details(bid)
+
+
+    print("bname",bname[0][0])
+    name = "\"" + bname[0][0] + "\""
+    print(name)
+    query = "insert into issued values({}, {}, {}, {}, {}, {})".format(lid, sid, bid, name,date_str, 0)
+    print("insert into issued values(lid={}, sid={}, bid={}, bname={},  is_returned={})".format(lid, sid, bid,auto_fill_book_details(bid) , 0))
+    # result = execute_query(query, con)
+    c1 = con.cursor()
+    c1.execute(query=query)
+    result = c1.fetchall()
     con.commit()
-    print(result)
+    query2 = "update books set isAvailable=0 where bid={}".format(bid)
+    c2 = con.cursor()
+    c2.execute(query=query2)
+    result2 = c2.fetchall()
+    con.commit()
+    print(result, result2)
 
 @app.route("/")
 @app.route("/home")
@@ -99,17 +102,54 @@ def getBname():
         print(bname[0][0])
         return jsonify({"bname":bname[0][0], "bnameid":bnameid})
 
+def extract_book_from_db(search_text):
+    query = "select bid, author, bname  from books where bname like '%{}%' OR author like '%{}%'".format(search_text, search_text)
+    result = execute_query(query=query, con=con)
+    return(result)
+
+def count_no_of_books(search_text):
+    query = "select count(bid) from books where bname like '%{}%'".format(search_text)
+    result = execute_query(query, con)
+    # print(result[0][0])
+    return result[0][0]
+
 
 @app.route('/getQuery', methods=['GET', 'POST'])
 def getQuery():
     print('##################')
-    # print(request.form['query'])
+    print(request.form['query'])
     result = extract_book_from_db(request.form['query'])
     count = count_no_of_books(request.form['query'])
-    json = {}
+    # print(count)
+    json = []
+    # print(result)
+    # print(result[1])
     for i in range(count):
-        json[count] = result[0][count]
+        json.append(result[i])
+        print("This is",json)
     print(json)
     return jsonify(json)
 
-count_no_of_books("Harry potter")
+
+
+@app.route('/returnb', methods=['GET', 'POST'])
+def returnb():
+    print('##################')
+    print(request.form['rev'])
+    result = fetch_issued_book_details(request.form['rev'][0])
+    print(result[0][1])
+    print(result[0][3])
+    import datetime
+    from datetime import date
+    date_str = str(result[0][3])  # The date - 29 Dec 2017
+    format_str = '%Y-%m-%d'  # The format
+    datetime_obj = datetime.datetime.strptime(date_str, format_str)
+    end_date = str((datetime_obj + datetime.timedelta(days=7)).strftime(format_str))
+    print(end_date)
+    print((datetime.datetime.now()-datetime_obj).days)
+    if((datetime.datetime.now()-datetime_obj).days>7):
+        lf = (datetime.datetime.now()-datetime_obj).days * 2-14
+
+    else:
+        lf=0
+    return jsonify({"rev": result[0][0], "sid":result[0][1], "bname": result[0][2], "doi": str(result[0][3]), "edd": end_date, "lf": lf})
