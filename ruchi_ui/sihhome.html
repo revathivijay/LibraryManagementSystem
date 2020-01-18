@@ -3,19 +3,19 @@
 
     <head>
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="sihhome.css">
+        <link rel="stylesheet" type="text/css" href="./../static/sihhome.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+
     </head>
 
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img class="myimg" src="circle-cropped.png"></a>
+            <a class="navbar-brand" href="#"><img class="myimg" src="./../static/images/circle-cropped.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,19 +29,12 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="./login/index.html">Login</a>
                     </li>
-                    &nbsp;&nbsp;&nbsp;
                     <li class="nav-item active">
                         <a class="nav-link" href="dynamic.html">Issue book</a>
                     </li>
-                    &nbsp;&nbsp;&nbsp;
                     <li class="nav-item active">
                         <a class="nav-link" href="returnbook.html">Return book</a>
                     </li>
-                    &nbsp;&nbsp;&nbsp;
-                    <li class="nav-item active">
-                        <a class="nav-link" href="addbook.html">Add book</a>
-                    </li>
-                    &nbsp;&nbsp;&nbsp;
                     <div class="container">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Dropdown
@@ -60,6 +53,7 @@
                             </ul>
                         </div>
                     </div>
+                    <div id="q"></div>
                     <script>
                         $(document).ready(function () {
                             $('.dropdown-submenu a.test').on("click", function (e) {
@@ -74,10 +68,10 @@
                 <div class="container">
                     <div class=>
                         <div class="searchbar">
-                            <input class="search_input" id="sinput" type="text" name="" placeholder="Search...">
+                            <input class="search_input" id="sinput" type="text" name="" placeholder="Search..." >
 
-                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-
+                            <a href="#" class="search_icon" onclick="fun()"><i class="fas fa-search"></i></a>
+                            <script>function fun(){location.href='displaybooks.html?text='+Content}</script>
                             <a href="#" class="voice_icon" id="voice"><i class="fas fa-microphone"></i></a>
                             <!--- VOICE RECOGNITION JS CODE-->
                             <script type="text/javascript">
@@ -99,6 +93,74 @@
 
                                     Content += transcript;
                                     Textbox.val(Content);
+                                    console.log(Content);
+
+                                    $.ajax({
+            data : {
+               query:Content
+                   },
+               type : 'POST',
+               url : 'http://127.0.0.1:5000/getQuery',
+               success:function(response)
+               {
+               console.log('Success')
+                    var el_up = document.getElementById("q");
+
+        var list = response;
+
+
+        function GFG_FUN() {
+            var cols = [];
+
+            for (var i = 0; i < list.length; i++) {
+                for (var k in list[i]) {
+                    if (cols.indexOf(k) === -1) {
+
+                        // Push all keys to the array
+                        cols.push(k);
+                    }
+                }
+            }
+
+            // Create a table element
+            var table = document.createElement("table");
+
+            // Create table row tr element of a table
+            var tr = table.insertRow(-1);
+
+            for (var i = 0; i < cols.length; i++) {
+
+                // Create the table header th element
+                var theader = document.createElement("th");
+                theader.innerHTML = cols[i];
+
+                // Append columnName to the table row
+                tr.appendChild(theader);
+            }
+
+            // Adding the data to the table
+            for (var i = 0; i < list.length; i++) {
+
+                // Create a new row
+                trow = table.insertRow(-1);
+                for (var j = 0; j < cols.length; j++) {
+                    var cell = trow.insertCell(-1);
+
+                    // Inserting the cell at particular place
+                    cell.innerHTML = list[i][cols[j]];
+                }
+            }
+
+            // Add the newely created table containing json data
+            var el = document.getElementById("table");
+            el.innerHTML = "";
+            el.appendChild(table);
+        }
+               }
+
+            },
+              );
+              event.preventDefault();
 
                                 };
 
@@ -129,10 +191,23 @@
 
                                 Textbox.on('input', function () {
                                     Content = $(this).val();
+                                    console.log(Content)
+                                    $.ajax({
+                                        data : {
+                                           query:Content
+                                               },
+                                           type : 'POST',                                           url : 'http://127.0.0.1:5000/getQuery'
+
+                                            },
+                                          );
+
+
+
                                 })
 
                             </script>
                             <!--- VOICE RECOGNITION JS CODE ENDS-->
+
                         </div>
                     </div>
                 </div>
@@ -147,9 +222,11 @@
                     <img class="d-block w-100" src="https://images.unsplash.com/photo-1419640303358-44f0d27f48e7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80"
                         alt="First slide">
                     <div class="carousel-caption">
+
                         <h1 data-shadow='dang!'>dang!</h1>
                         <h3>"Your go-to place for any and every book!"</h3>
                         <button id="myButton" class="submit-button btn btn-dark btn-lg">Login</button>
+
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -158,6 +235,7 @@
                         <h1 class="display-2">ALMS</h1>
                         <h3>!"Your go-to place for any and every book"</h3>
                         <button id="myButton" class="submit-button btn btn-dark btn-lg">Login</button>
+
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -167,7 +245,9 @@
                         <h1 class="display-2">ALMS</h1>
                         <h3>"Your go-to place for any and every book!"</h3>
                         <button id="myButton" class="submit-button btn btn-dark btn-lg">Login</button>
+
                     </div>
+
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
