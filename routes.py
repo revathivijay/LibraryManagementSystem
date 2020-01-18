@@ -152,4 +152,7 @@ def returnb():
 
     else:
         lf=0
+    query="update books set isAvailable=1 where bid={}".format(request.form['rev'][0])
+    result = execute_query(query, con)
+    print(result)
     return jsonify({"rev": result[0][0], "sid":result[0][1], "bname": result[0][2], "doi": str(result[0][3]), "edd": end_date, "lf": lf})
