@@ -40,7 +40,7 @@ input[type=date], select {
 
 .button {
     width: 80%;
-    background-color: #4CAF50;
+    background-color: #1D3C58;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -50,7 +50,7 @@ input[type=date], select {
 }
 
 input[type=button]:hover {
-    background-color: #45a049;
+    background-color: #051421;
 }
 
 .dynamic-css {
